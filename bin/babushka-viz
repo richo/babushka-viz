@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 #
+require 'json'
 $:.unshift(File.expand_path("../../lib", __FILE__))
 require 'babushka-viz/deps'
 
@@ -22,6 +23,13 @@ def main(argv)
   puts "Writing index files to public/index.html"
   File.open("public/index.html", "w") do |fh|
     fh.write(ERB.new(FILE_READ.call("template/index.html.erb")).result(binding))
+  end
+
+  puts "Writing data file to public/data.json"
+  File.open("public/data.json", "w") do |fh|
+    fh.write(deps.merge(deps){ |name, dep|
+      dep.___dependencies
+    }.to_json)
   end
 end
 main(ARGV)
