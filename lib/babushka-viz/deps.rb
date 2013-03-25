@@ -70,6 +70,15 @@ module BabushkaVizSandbox extend self
     def to_s
       "<#{@name}> Requires: #{@dependencies}"
     end
+
+    # Accessors with weird names to stay out of the way
+    def ___name
+      @name
+    end
+
+    def ___dependencies
+      @dependencies
+    end
   end
 
   class BabushkaVizStubMeta

@@ -1,0 +1,11 @@
+function load_data(graph) {
+  var deps = {}
+  <% deps.each do |name, dep| %>
+  deps[<%= name.inspect %>] = graph.newNode({label: <%= name.inspect %>});<% end %>
+
+  <% deps.each do |name, dep| %><% depname = name.gsub(/ /, "_") %>
+    <% dep.___dependencies.each do |dependency| %>
+      if (deps[<%= dependency.inspect %>] !== undefined)
+        graph.newEdge(deps[<%= name.inspect %>], deps[<%= dependency.inspect %>]);
+  <% end %> <% end %>
+}

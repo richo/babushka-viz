@@ -6,14 +6,16 @@
         <script src="vendor/jquery-1.9.1.js"></script>
         <script src="vendor/springy.js"></script>
         <script src="vendor/springyui.js"></script>
-        <script src="helpers.js"></script>
         <script src="data.js"></script>
     </head>
     <body>
-      <canvas id="dependency_graph" width="100%" height="100%" />
+      <canvas id="dependency_graph" width="20" height="20" />
     </body>
     <script>
       $(document).ready(function() {
+        var graph_cvs = document.getElementById('dependency_graph');
+        graph_cvs.width = document.width;
+        graph_cvs.height = document.height;
         var graph = new Springy.Graph();
         load_data(graph);
         $('#dependency_graph').springy({graph: graph});

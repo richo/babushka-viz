@@ -13,5 +13,15 @@ def main(argv)
   deps = load_deps(deps_dir)
 
   puts "Loaded #{deps.length} deps"
+  puts "Writing dep data to public/data.js"
+
+  File.open("public/data.js", "w") do |fh|
+    fh.write(ERB.new(FILE_READ.call("template/data.js.erb")).result(binding))
+  end
+
+  puts "Writing index files to public/index.html"
+  File.open("public/index.html", "w") do |fh|
+    fh.write(ERB.new(FILE_READ.call("template/index.html.erb")).result(binding))
+  end
 end
 main(ARGV)
