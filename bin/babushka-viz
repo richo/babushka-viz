@@ -11,5 +11,7 @@ end
 def main(argv)
   deps_dir = argv[0] or usage
   deps = load_deps(deps_dir)
+
+  puts "Loaded #{deps.length} deps"
 end
 main(ARGV)

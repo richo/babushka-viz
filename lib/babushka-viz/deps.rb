@@ -9,9 +9,7 @@ def load_deps(dep_dir)
     dep.load
   end
 
-  BabushkaVizSandbox.deps.each do |k, v|
-    puts "#{k} :: #{v}"
-  end
+  return BabushkaVizSandbox.deps
 end
 
 module BabushkaVizSandbox extend self
@@ -47,12 +45,10 @@ module BabushkaVizSandbox extend self
     end
 
     def load
-      puts "called load for #{@name}"
       self.instance_exec(&@block) if @block
     end
 
     def requires(*deps)
-      puts "called requires"
       deps.each do |d|
         case d
         when String
